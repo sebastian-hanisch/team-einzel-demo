@@ -1,5 +1,7 @@
 # Von der Mannschaft zum Einzelnen: wer trägt das Team? – Streamlit-Demo
 
+**[→ Demo live ausprobieren](https://sebastianhanisch-team-einzel-demo.streamlit.app/)**
+
 Zehntes Stück der **Ranking-Linie** (Konzepte-Demo), Nachfolger von `whr-demo` und `glicko-trueskill-demo`: Beobachtet werden nur **Mannschaftsergebnisse**, gesucht ist die
 **Stärke jedes Einzelnen**. Gemessen wird, wann sich Spieler derselben Mannschaft trennen lassen, was die naive Siegquote gegen eine Regression mit Regularisierung kostet und was
 passiert, wenn die Mannschaftsstärke nicht die Summe ist. Das Vehikel ist das neutrale, simulierte Turnier der Wurzel (Stärken aus dem Generator Version 1, wortgleich; Aufstellungen
@@ -137,4 +139,4 @@ Gebaut mit Streamlit, Plotly, numpy, pandas und fpdf2.
 
 ---
 
-Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zu den Demos: [Interaktive Demos](https://sebastianhanisch.net/demos.html).
+Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zur Reihe: [Ranking: von der Siegtabelle bis Learning to Rank](https://sebastianhanisch.net/konzepte-ranking.html).
