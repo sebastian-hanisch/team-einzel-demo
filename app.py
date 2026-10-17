@@ -257,9 +257,11 @@ nach Zentrieren und mit dem Faktor $c$ der Kleinste-Quadrate-Angleichung.
 **Zufall.** Aufstellungen und Ausgänge aus der Gleichverteilten des Generators (SplitMix64); feste Mannschaften zufällig zugeordnet.
 
 **Literatur.**
-- Herbrich, R., Minka, T., Graepel, T. (2006): TrueSkill™: A Bayesian skill rating system. *Advances in Neural Information Processing Systems 19*, 569–576 (Formeln nach der
-  Dokumentation des Pakets `trueskill`; das Original wurde nicht eingesehen).
-- Hoerl, A. E., Kennard, R. W. (1970): Ridge regression: Biased estimation for nonorthogonal problems. *Technometrics* 12 (1), 55–67 (nicht eingesehen).
+- Herbrich, R., Minka, T., Graepel, T. (2006): TrueSkill™: A Bayesian skill rating system. *Advances in Neural Information Processing Systems 19*, 569–576 (im Volltext eingesehen:
+  Mannschaftsleistung als Summe der Spielerleistungen, Erwartungsabgleich mit V und W; die ausgeschriebene Aktualisierung µ_i += σ_i² v/c steht im Papier nicht, sie folgt aus dem Modell
+  und ist hier nach der Dokumentation des Pakets `trueskill` angesetzt).
+- Hoerl, A. E., Kennard, R. W. (1970): Ridge regression: Biased estimation for nonorthogonal problems. *Technometrics* 12 (1), 55–67 (im Scan des Technometrics-Archivs eingesehen:
+  Schätzer [X'X + kI]⁻¹ X'Y, Gleichung (2.1); die logistische Fassung der Demo steht dort nicht).
 - Steele, G. L., Lea, D., Flood, C. H. (2014): Fast splittable pseudorandom number generators. *OOPSLA 2014*, 453–472 (Zufallsstrom des Generators).
         """
     )

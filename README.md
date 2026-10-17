@@ -84,9 +84,12 @@ Alle Zahlen: 60 feste Läufe, 12 Spieler in 4 Mannschaften zu 3, δ = 0,3, Paart
 
 ## Quellen
 
-- Herbrich, R., Minka, T., Graepel, T. (2006): TrueSkill™: A Bayesian skill rating system. *Advances in Neural Information Processing Systems 19*, 569–576 (Formeln nach der
-  Dokumentation des Pakets `trueskill`; das Original wurde nicht eingesehen). Die Aktualisierung für Teams ist gegen `trueskill` 0.4.5 geprüft.
-- Hoerl, A. E., Kennard, R. W. (1970): Ridge regression: Biased estimation for nonorthogonal problems. *Technometrics* 12 (1), 55–67 (nicht eingesehen).
+- Herbrich, R., Minka, T., Graepel, T. (2006): TrueSkill™: A Bayesian skill rating system. *Advances in Neural Information Processing Systems 19*, 569–576 (eingesehen
+  2026-10-17 im Volltext der NIPS-Fassung: Mannschaftsleistung als Summe der Spielerleistungen p_i ~ N(s_i, β²) (Abschnitt 2), Erwartungsabgleich mit V und W (Tabelle 1, Abschnitt 3); die
+  ausgeschriebene Aktualisierung µ_i += σ_i² v/c mit c² = 2 m β² + Σσ² steht im Papier nicht, sie folgt aus Modell und Tabelle 1 und ist hier nach der Dokumentation des Pakets `trueskill`
+  angesetzt). Die Aktualisierung für Teams ist gegen `trueskill` 0.4.5 geprüft.
+- Hoerl, A. E., Kennard, R. W. (1970): Ridge regression: Biased estimation for nonorthogonal problems. *Technometrics* 12 (1), 55–67 (eingesehen 2026-10-17 im Scan des Technometrics-Archivs, stat.cmu.edu: Schätzer [X'X + kI]⁻¹ X'Y, Gleichung (2.1), und Existenzsatz in Abschnitt 4b (immer ein k > 0 mit kleinerem mittlerem
+  quadratischem Fehler), bayessche Deutung als Prior mit Mittel 0 in Abschnitt 6; die logistische Fassung der Demo steht dort nicht).
 - Steele, G. L., Lea, D., Flood, C. H. (2014): Fast splittable pseudorandom number generators. *OOPSLA 2014*, 453–472 (Zufallsstrom des Generators).
 - **Nicht herangezogen:** Arbeiten zu verallgemeinerten Bradley-Terry-Modellen für Teams und zu regularisierten Plus-Minus-Statistiken im Sport; die Zahlen dieser Demo sind Simulation.
 
