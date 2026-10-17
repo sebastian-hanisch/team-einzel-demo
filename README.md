@@ -10,11 +10,12 @@ und Ausgänge lokal); alles ist simuliert, es gibt keinen echten Datensatz.
 ## Kernfrage
 
 Wann lässt sich aus Mannschaftsergebnissen die Einzelstärke schätzen? **Nur soweit die Aufstellungen wechseln.** Spielen die Spieler immer in denselben Trios, sind sie innerhalb der
-Mannschaft nicht zu trennen, und **mehr Spiele ändern daran nichts:** Anteil richtig geordneter Paare 0,66 bei 60, 200 und 600 Spielen (Zufall wäre 0,5; Rang der Designmatrix 3 von
-11). **Schon jedes zehnte Spiel mit neuer Aufstellung** trennt sie, langsam: Regression 0,74 / 0,83 / 0,91 nach 60 / 200 / 600 Spielen; die **naive Siegquote** lässt den Mitspieler
+Mannschaft nicht zu trennen, und **mehr Spiele ändern daran nichts:** Anteil richtig geordneter Paare etwa 0,66 bei 60, 200 und 600 Spielen (4 Mannschaften zu 3, Zufall wäre 0,5; Rang der Designmatrix 3 von
+11; bei anderen Mannschaftszahlen und -größen liegt die Grenze zwischen 0,62 und 0,70). **Schon jedes zehnte Spiel mit neuer Aufstellung** trennt sie, aber langsam: Regression 0,74 / 0,83 / 0,91 nach 60 / 200 / 600 Spielen; die **naive Siegquote** lässt den Mitspieler
 mitzählen und bleibt bei 0,69 / 0,72 / 0,73 hängen. Steht der Schwächste in 90 % der Spiele neben dem Besten („Windschatten“), liegt die Siegquote ihn um **1,6 Einheiten** zu hoch
-(rund fünf Plätze), Elo für Teams um 1,25, TrueSkill-Teams um 1,4, die Regression um 0,5 und die Regression ohne Regularisierung um 0,13. **Die Regularisierung hilft bei wenig
-Information** (Fehler 0,57 bei λ = 0,5 gegen 0,73 ohne), **zieht aber beim Windschatten zum Mitspieler hin.** Und wenn **der Beste trägt** statt der Summe, fällt der Paartreffer von
+(rund fünf Plätze), Elo für Teams um 1,25, TrueSkill-Teams um 1,4, die Regression um 0,5 und die Regression ohne Regularisierung um 0,13 (bei 300 Spielen; mit 3000 Spielen bleibt nur die Siegquote bei 1,6 und
+TrueSkill-Teams bei 1,3, Elo für Teams sinkt auf 0,3 und die Regression auf 0,03). **Die Regularisierung hilft bei wenig
+Information** (Fehler 0,57 bei λ = 0,5 gegen 0,73 ohne), **zieht aber bei wenig Information (300 Spiele) beim Windschatten zum Mitspieler hin;** bei 3000 Spielen ist der Effekt verschwunden. Und wenn **der Beste trägt** statt der Summe, fällt der Paartreffer von
 0,93 auf 0,80.
 
 ## Modell
@@ -62,9 +63,9 @@ Alle Zahlen: 60 feste Läufe, 12 Spieler in 4 Mannschaften zu 3, δ = 0,3, Paart
 - **Teams: 3 bis 6 Mannschaften zu 2, 3 oder 4** (6 bis 24 Spieler) statt „6 bis 18 Spieler“: die Anzahl der festen Mannschaften ist der Regler, die Spielerzahl folgt daraus.
 - **Der Rang der Designmatrix ist neu im Hauptergebnis:** Er zeigt die Kollinearität direkt (3 von 11 bei festen Mannschaften, 8,7 bei q = 0,1 und 60 Spielen, 11 ab 200 Spielen); der
   Plan hatte die Bedingungszahl vorgesehen, die bei Rangverlust unendlich wäre.
-- **Der Ridge ist beim Windschatten die schwächere Wahl als Maximum Likelihood** (+0,52 gegen +0,13); bei wenig Information ist er dafür deutlich stabiler (q = 0,1, 60 Spiele: 0,735
+- **Der Ridge ist beim Windschatten bei 300 Spielen die schwächere Wahl als Maximum Likelihood** (+0,52 gegen +0,13); bei wenig Information ist er dafür deutlich stabiler (q = 0,1, 60 Spiele: 0,735
   gegen 0,664). Die Demo zeigt beides und verspricht kein bestes λ.
-- **Mittelwert statt Summe wäre nur eine Skala:** Bei gleicher Mannschaftsgröße ist „Mittel × m“ dasselbe wie die Summe; als Fehlspezifikation taugt nur das Maximum.
+- **Mittelwert statt Summe wäre nur eine Skala:** Bei gleicher Mannschaftsgröße ist „Mittel × m“ dasselbe wie die Summe; als Fehlspezifikation wählt die Demo das Maximum.
 
 ## Abgrenzung
 
@@ -77,7 +78,7 @@ Alle Zahlen: 60 feste Läufe, 12 Spieler in 4 Mannschaften zu 3, δ = 0,3, Paart
 
 - **Zufällige Aufstellungen:** Echte Mannschaften sind nicht zufällig zusammengesetzt; der Trainer, der die Besten zusammenstellt, ist der Windschatten-Fall, nicht das Modell.
 - **Additivität:** Die Summe ist eine Annahme; Experiment 6 zeigt, was es kostet, wenn sie nicht gilt, aber keine andere Aggregatfunktion wird geschätzt.
-- **Kein bestes λ:** bei wenig Information hilft viel, beim Windschatten schadet es; die Demo zeigt eine Lage je Experiment.
+- **Kein für alle Lagen bestes λ:** bei wenig Information hilft viel, beim Windschatten (300 Spiele) schadet es; die Demo zeigt eine Lage je Experiment.
 - **Kleine Felder:** 6 bis 24 Spieler, Mannschaften zu 2 bis 4, ein Generator, 60 Läufe je Zelle; Unterschiede unter etwa 0,01 im Paartreffer sind Rauschen.
 - **Keine Rollen, kein Heimvorteil, keine Zeitachse,** nur Sieg und Niederlage.
 - **Alles simuliert:** keine Aussage über einen Sport oder über echte Plus-Minus-Statistiken.
@@ -95,7 +96,7 @@ Alle Zahlen: 60 feste Läufe, 12 Spieler in 4 Mannschaften zu 3, δ = 0,3, Paart
 
 ## Tests
 
-107 Tests, rund eine Minute: Einheiten gegen Handwerte (`test_games.py`: Aufstellungen, Windschatten, Aggregat, Ausgänge; `test_estimators.py`: Designmatrix, Siegquote, Elo-Team,
+413 Tests, rund zwei Minuten (auf dem Entwicklungsrechner gemessen): Einheiten gegen Handwerte (`test_games.py`: Aufstellungen, Windschatten, Aggregat, Ausgänge; `test_estimators.py`: Designmatrix, Siegquote, Elo-Team,
 Ridge-Regression, TrueSkill-Teams), Generator (`test_generator.py`, wortgleich), **Orakel** (`test_oracle_team_einzel.py`: Ridge-Regression gegen den Maximierer von scipy; Rang der
 Designmatrix gegen `numpy.linalg.matrix_rank` für feste und rotierende Aufstellungen; **TrueSkill für Teams gegen das Paket `trueskill`** auf 25 Spielen; Elo-Team gegen die
 Lehrbuchformel in Punkten; Paartreffer und Skalenangleichung von Hand; Windschatten mit starkem Signal), Maße, Tabelle und Verdikte (`test_evaluation.py`), alle Zahlen dieses README

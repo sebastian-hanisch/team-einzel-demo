@@ -89,7 +89,7 @@ with st.expander("Wie aus Mannschaften Einzelne werden", expanded=True):
 3. **Kollinearität:** Spielen immer dieselben Spieler zusammen, haben ihre Spalten dieselbe Form: Die Differenz zwischen zwei Mitspielern taucht in keiner Zeile auf. Der Rang der
    Matrix sinkt, die Spieler sind nicht zu trennen.
 4. **Ausweg:** wechselnde Aufstellungen (Rotation) und eine **Regularisierung**, die bei wenig Information die Schätzungen zur Mitte hin zieht. Sie hat einen Preis: Sie zieht
-   auch einen schwachen Dauer-Mitspieler zu seinem starken Partner (Experiment 4).
+   bei wenig Information auch einen schwachen Dauer-Mitspieler zu seinem starken Partner (Experiment 4).
         """
     )
 
@@ -126,7 +126,7 @@ with st.sidebar:
     st.markdown("**Schätzer**")
     k = st.slider("Elo-Team: K in Punkten je Spieler", *bounds("k_slider"), key="k_slider", help="Wertungsänderung je Spieler und Spiel: K mal (Ergebnis minus Erwartung).")
     lam = st.slider("Ridge-Regularisierung λ", *bounds("lam_slider"), step=C.LAM_STEP, key="lam_slider", format="%.1f",
-                    help="Prior N(0, 1/λ) auf jeder Stärke. 0 = kaum Regularisierung. Es gibt kein bestes λ: bei wenig Information hilft viel, beim Windschatten schadet es (Experimente 4 und 5).")
+                    help="Prior N(0, 1/λ) auf jeder Stärke. 0 = kaum Regularisierung. Es gibt kein für alle Lagen bestes λ: bei wenig Information hilft viel, beim Windschatten schadet es (Experimente 4 und 5).")
     seed = st.number_input("Zufalls-Seed", *bounds("seed_input"), key="seed_input", step=1)
     st.button("🎲 Neuen Lauf würfeln", width="stretch", on_click=randomize_seed)
 
@@ -227,7 +227,7 @@ st.markdown(
 | **Ein Spiel ist Sieg oder Niederlage** | Remis, Tore und Heimvorteil haben ein eigenes Modell; hier nur der Ausgang. | Tore, Remis, Heimvorteil |
 | **Die Stärken sind fest** | Eine Zeitachse (Form, Verletzung, Wechsel) gehört nicht zum Modell. | WHR und TrueSkill Through Time |
 | **Alle Spieler spielen die gleiche Rolle** | Positionen und Rollen (Torwart, Stürmer) sind nicht modelliert. | – |
-| **Das λ ist bekannt** | Es gibt kein bestes λ: bei wenig Information hilft viel, beim Windschatten schadet es (Experimente 4 und 5). | – |
+| **Das λ ist bekannt** | Es gibt kein für alle Lagen bestes λ: bei wenig Information hilft viel, beim Windschatten (300 Spiele) schadet es (Experimente 4 und 5). | – |
 | **Alles ist simuliert** | Stärken, Aufstellungen und Ausgänge sind Konstruktionen; keine Aussage über einen Sport oder über echte Plus-Minus-Statistiken. | – |
 """
 )

@@ -226,7 +226,7 @@ def verdict_rotation(rows):
     a = [_rot(rows, q, C.GAMES_GRID[-1])["acc"]["Ridge"] for q in C.Q_GRID]
     return "info", (f"Nach {C.GAMES_GRID[-1]} Spielen liegt der Paartreffer der Regression bei Rotation q = {de(C.Q_GRID[0], 1)} / {de(C.Q_GRID[1], 1)} / {de(C.Q_GRID[2], 1)} / "
                     f"{de(C.Q_GRID[3], 1)} bei **{de(a[0])} / {de(a[1])} / {de(a[2])} / {de(a[3])}**. **Schon jedes zehnte Spiel mit neuer Aufstellung** trennt die Spieler, "
-                    "langsam: Die Information über Unterschiede innerhalb der Mannschaften steckt nur in den rotierenden Spielen.")
+                    "aber langsam: Die Information über Unterschiede innerhalb der Mannschaften steckt nur in den rotierenden Spielen.")
 
 
 def verdict_methods(rows):
@@ -242,7 +242,7 @@ def verdict_wind(rows):
     return "warning", (f"Steht der Schwächste in {de(100 * top['c'], 0)} % der Spiele neben dem Besten, liegt er bei der **Siegquote** um {signed(top['err']['Siegquote'])} Einheiten zu hoch "
                        f"({de(top['places']['Siegquote'], 1)} Spieler unter ihm), bei Elo-Team {signed(top['err']['Elo-Team'])}, bei TrueSkill-Teams {signed(top['err']['TrueSkill-Teams'])}, "
                        f"bei der **Regression** {signed(top['err']['Ridge'])} und bei der Regression ohne Regularisierung {signed(top['err']['Maximum Likelihood'])}. Die Regularisierung "
-                       "zieht ihn zum Mitspieler hin; ohne sie bleibt nur das Rauschen.")
+                       "zieht ihn bei dieser Spielzahl zum Mitspieler hin (mit 3000 Spielen ist der Effekt verschwunden); ohne sie bleibt nur das Rauschen.")
 
 
 def verdict_lambda(rows):
@@ -250,7 +250,7 @@ def verdict_lambda(rows):
     first, last = rows[0], rows[-1]
     return "info", (f"Bei teilweiser Rotation ({de(C.EXP_Q, 1)}, {C.EXP_GAMES} Spiele) ist der Fehler bei λ = {de(best['lam'], 1)} am kleinsten ({de(best['rmse'])}), ohne "
                     f"Regularisierung {de(first['rmse'])} und bei λ = {de(last['lam'], 0)} {de(last['rmse'])}: zu wenig lässt die Mitspieler-Verwechslung stehen, zu viel macht alle "
-                    "gleich. Es gibt kein bestes λ, nur eines je Lage (Experiment 4).")
+                    "gleich. Es gibt kein für alle Lagen bestes λ, nur eines je Lage (Experiment 4).")
 
 
 def verdict_aggregate(rows):
